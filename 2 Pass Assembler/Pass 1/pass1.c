@@ -67,7 +67,7 @@ int main()
                 if(operand[0] == 'C')
                     locctr += strlen(operand) - 3;
                 else    
-                    locctr += strlen(operand) / 2;
+                    locctr += (strlen(operand) - 3) / 2;
             }
             else if (strcmp(opcode, "RESB") == 0) {
                 locctr += atoi(operand);
