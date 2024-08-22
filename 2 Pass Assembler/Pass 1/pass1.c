@@ -82,9 +82,9 @@ int main()
         fclose(optab);
         fclose(input);
         length = locctr - start;
-        fprintf(len, "%d", length);
+        fprintf(len, "%x", length);
         fclose(len);
-        printf("\nThe length of the code : %d\n", length);
+        printf("\nThe length of the code : %x\n", length);
     }
     return 0;
 }
