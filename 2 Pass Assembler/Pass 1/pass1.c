@@ -44,7 +44,7 @@ int main()
                 if(flag == 0)
                     fprintf(symtab, "%s\t%x\n", label, locctr);
                 else
-                    printf("Error undefined symbol\n");
+                    printf("ERROR! : Duplicate symbol\n");
             }
             fscanf(optab, "%s\t%s", code, mnemonic);
             int flag = 0;
@@ -73,7 +73,7 @@ int main()
                 locctr += atoi(operand);
             }
             else if(flag == 0)
-                printf("Error undefined opcode\n");
+                printf("ERROR! : Undefined opcode\n");
             fscanf(input, "%s\t%s\t%s", label, opcode, operand);
         }
         fprintf(inter, "%x\t%s\t%s\t%s\n", locctr, label, opcode, operand);
