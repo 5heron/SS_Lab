@@ -2,7 +2,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-//IF Code doesn't work try 
 //adaptation of https://github.com/ceadoor/System-Software-lab code
  
 int main()
