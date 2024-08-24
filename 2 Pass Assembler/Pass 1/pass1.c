@@ -2,18 +2,19 @@
 #include <string.h>
 #include <stdlib.h>
 
-//steal stolen stole
 //adaptation of https://github.com/ceadoor/System-Software-lab code
  
 int main()
 {
     char label[10], opcode[10], operand[10], symbol[7];
     char code[10], mnemonic[3], *temp, *add;
-    int locctr, start, length;
+    int locctr, start, length, flag;
     FILE *input, *optab, *symtab, *inter, *len;
     input = fopen("input.txt", "r");
     optab = fopen("optab.txt", "r");
-    symtab = fopen("symtab.txt", "w+");
+    //Clear symtab
+    fclose(fopen("symtab.txt", "w"));
+    symtab = fopen("symtab.txt", "a+");
     inter = fopen("intermediate.txt", "w");
     len = fopen("length.txt", "w");
     if(input != NULL && optab != NULL){
@@ -25,29 +26,25 @@ int main()
             fprintf(inter, "\t%s\t%s\t%s\n", label, opcode, operand);     
             fscanf(input, "%s\t%s\t%s", label, opcode, operand); 
         } 
-        else {
+        else
             locctr = 0;
-        }
         while (strcmp(opcode, "END") != 0) {
             fprintf(inter, "%x\t%s\t%s\t%s\n", locctr, label, opcode, operand);
             if (strcmp(label, "**") != 0) {
                 rewind(symtab);
-                fscanf(symtab, "%s\t%s", symbol, add);
-                int flag = 0;
-                while (!feof(symtab)){
+                flag = 0;
+                while (fscanf(symtab, "%s\t%s", symbol, add) != EOF){
                     if (strcmp(label, symbol) == 0){
                         flag = 1;
+                        printf("ERROR! : Duplicate symbol\n");
                         break;
                     }
-                    fscanf(symtab, "%s\t%s", symbol, add);
                 }
                 if(flag == 0)
                     fprintf(symtab, "%s\t%x\n", label, locctr);
-                else
-                    printf("ERROR! : Duplicate symbol\n");
             }
             fscanf(optab, "%s\t%s", code, mnemonic);
-            int flag = 0;
+            flag = 0;
             while (strcmp(code, "END") != 0) {
                 if (strcmp(opcode, code) == 0) {                       
                     locctr += 3;
