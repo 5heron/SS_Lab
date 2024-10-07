@@ -4,7 +4,18 @@
 
 //If code doesn't work try code in SS_Lab/Works_in_lab/
 //adaptation of https://github.com/ceadoor/System-Software-lab code
- 
+int check_symtab_duplicate(FILE *symtab, const char *label)
+{
+    char sym_label[25];
+    int address;
+    rewind(symtab);
+    while (fscanf(symtab, "%s\t%d", sym_label, &address) != EOF){
+        if (strcmp(sym_label, label) == 0)
+            return 1;
+    }
+    return 0;
+}
+
 int main()
 {
     char label[10], opcode[10], operand[10], symbol[7];
@@ -32,16 +43,9 @@ int main()
         while (strcmp(opcode, "END") != 0) {
             fprintf(inter, "%x\t%s\t%s\t%s\n", locctr, label, opcode, operand);
             if (strcmp(label, "**") != 0) {
-                rewind(symtab);
-                flag = 0;
-                while (fscanf(symtab, "%s\t%s", symbol, add) != EOF){
-                    if (strcmp(label, symbol) == 0){
-                        flag = 1;
-                        printf("ERROR! : Duplicate symbol\n");
-                        break;
-                    }
-                }
-                if(flag == 0)
+                if (check_symtab_duplicate(symtab, label))
+                    printf("ERROR! : Duplicate symbol\n");
+                else
                     fprintf(symtab, "%s\t%x\n", label, locctr);
             }
             fscanf(optab, "%s\t%s", code, mnemonic);
