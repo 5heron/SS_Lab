@@ -24,9 +24,7 @@ int main()
     FILE *input, *optab, *symtab, *inter, *len;
     input = fopen("input.txt", "r");
     optab = fopen("optab.txt", "r");
-    //Clear symtab
-    fclose(fopen("symtab.txt", "w"));
-    symtab = fopen("symtab.txt", "a+");
+    symtab = fopen("symtab.txt", "w+");
     inter = fopen("intermediate.txt", "w");
     len = fopen("length.txt", "w");
     if(input != NULL && optab != NULL){
