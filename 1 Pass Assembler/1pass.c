@@ -98,7 +98,7 @@ int main()
     int length,flag,locctr,start;
     input = fopen("input.txt", "r");
     optab = fopen("optab.txt", "r");
-    symtab1 = fopen("symtab.txt", "w");
+    symtab1 = fopen("symtab_temp.txt", "w");
     objcode = fopen("objcode.txt", "w");
     if(input != NULL && optab != NULL){
         fscanf(input, "%s\t%s\t%s", label, opcode, operand);
@@ -212,7 +212,7 @@ int main()
         fprintf(objcode, "E^%06x^\n", start);
         printf("End record :\n\nE^%06x^\n", start);
         printf("\nThe length of the code : %x\n", length);
-        symtab1 = fopen("symtab1.txt", "w");
+        symtab1 = fopen("symtab_final.txt", "w");
         while (symtab != NULL){
             fprintf(symtab1, "%s\t%04x\n", symtab->label, symtab->val);
             symtab = symtab->next;
