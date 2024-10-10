@@ -116,7 +116,8 @@ int main()
         while (strcmp(opcode, "END") != 0) {
             strcpy(obj,"");
             if (strcmp(label, "-") != 0) {
-                if(search_symtab(label) == -1){
+                int search_res = search_symtab(label);
+                if(search_res == -1){
                     if(curr_len != 0)
                         objcode = print_rec(objcode,curr_len,text_add,text_rec);
                     text_add = locctr;
@@ -124,10 +125,10 @@ int main()
                     strcpy(text_rec,"");
                     objcode = del_list(label,locctr,objcode);
                 }
-                else{
-                	fprintf(symtab1, "%s\t%x\n", label, locctr);
+                else if(search_res == -2)
                 	insert(label,locctr,0);
-                }
+                else
+                    printf("ERROR! : Duplicate symbol\n");    
             }
             //Starting Address of next record
             next_add = locctr;
@@ -144,15 +145,16 @@ int main()
             }
             rewind(optab);
             if(flag == 1){
-            	int a1 = search_symtab(operand);
-                if(a1 >= 0){
-                	sprintf(str, "%04x", a1);
+            	int search_res = search_symtab(operand);
+                if(search_res >= 0){
+                	sprintf(str, "%04x", search_res);
                 	strcat(obj, str);
                 }
                 else{
                     sprintf(str, "%04x", 0000);
                 	strcat(obj, str);
-                    fprintf(symtab1, "%s\t%s\n", operand, "**");
+                    if(search_res == -2)
+                        fprintf(symtab1, "%s\t%s\n", operand, "**");
                 	insert(operand,locctr + 1,1);
                 }
             }
