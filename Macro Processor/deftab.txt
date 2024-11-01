@@ -1,0 +1,7 @@
+RDREC	MACRO	&num1,&num2
+-	LDA	?1
+-	LDA	x'?2'
+-	MEND	-
+wrREC	MACRO	&num1
+-	LDA	?1
+-	MEND	-

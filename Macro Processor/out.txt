@@ -1,0 +1,7 @@
+COPY	START	1000
+.-	RDREC	50,20
+-	LDA	50
+-	LDA	x'20'
+.-	wrREC	al
+-	LDA	al
+-	END	-
