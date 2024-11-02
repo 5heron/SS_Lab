@@ -25,7 +25,7 @@ int main()
     input = fopen("input.txt", "r");
     optab = fopen("optab.txt", "r");
     symtab = fopen("symtab.txt", "w+");
-    inter = fopen("intermediate.txt", "w");
+    inter = fopen("inter.txt", "w");
     len = fopen("length.txt", "w");
     if(input != NULL && optab != NULL){
         fscanf(input, "%s\t%s\t%s", label, opcode, operand);

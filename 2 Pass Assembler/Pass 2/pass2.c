@@ -10,8 +10,8 @@ int main()
     char address[5], name[6], opcode[6], label[6], operand[6], *temp, symbol[10], add[5], str[10], text_rec[160], obj[60];
     FILE *symtab, *inter, *objcode, *optab;
     symtab = fopen("symtab.txt", "r");
-    inter = fopen("intermediate.txt", "r");
-    objcode = fopen("objcode.txt", "w");
+    inter = fopen("inter.txt", "r");
+    objcode = fopen("out.txt", "w");
     optab = fopen("optab.txt", "r");
     if (symtab != NULL && inter != NULL)
     {
