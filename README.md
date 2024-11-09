@@ -15,7 +15,7 @@ University: APJ Abdul Kalam Technological University
 
 - **[Single pass macroprocessor](Macro_Processor)**  
 
-- **[MASM](Cpu_scheduling)**
+- **[MASM](MASM)**
   - [Sample Programs](MASM/Programs)
   - [Programs.pdf](MASM/masam_programs.pdf)
   - [Tools for execution](MASM/For_execution)
