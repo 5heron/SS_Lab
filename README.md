@@ -12,6 +12,13 @@ University: APJ Abdul Kalam Technological University
   - [Pass 1 of a Two Pass Assembler](Assembler/2_Pass_Assembler/Pass_1)
   - [Pass 2 of a Two Pass Assembler](Assembler/2_Pass_Assembler/Pass_2)
   - [Single Pass Assembler](Assembler/1_Pass_Assembler)
+
+- **[Single pass macroprocessor](Macro_Processor)**  
+
+- **[MASM](Cpu_scheduling)**
+  - [Sample Programs](MASM/Programs)
+  - [Programs.pdf](MASM/masam_programs.pdf)
+  - [Tools for execution](MASM/For_execution)
   
 - **[CPU Scheduling](Cpu_scheduling)**
   - [Non pre-emptive](Cpu_scheduling/Non_preemptive)
