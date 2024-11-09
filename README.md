@@ -61,7 +61,7 @@ University: APJ Abdul Kalam Technological University
 
 Clone this repo
 ```
-$ git clone https://github.com/KTU-CSE/System-Software-lab.git
+$ git clone https://github.com/5heron/SS_Lab.git
 ```
 Switch to the program folder
 ```
