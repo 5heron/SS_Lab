@@ -29,6 +29,7 @@ int main()
             printf("Header record :\n\n H^%6s^%06x^%06x^\n\nText records :\n\n", name, start, length);
             fscanf(inter, "%s\t%s\t%s\t%s", address, label, opcode, operand);
         }
+        strcpy(text_rec,"");
         int rec_len, curr_len = 0, text_add = start, next_add = start;
         while (strcmp(opcode, "END") != 0){
             char code[10], mnemonic[10];
@@ -91,7 +92,6 @@ int main()
                 //If None of the above
                 printf("ERROR : Undefined opcode");
             //Length of record 
-            rec_len = curr_len;
             curr_len += strlen(obj);
             if(curr_len <= 60){
                 //If length less than 60 (30 bytes)
@@ -99,12 +99,13 @@ int main()
                     //Add it text record
                     strcat(obj,"^");
                     strcat(text_rec,obj);
+                    rec_len = curr_len;
                 }
             }
             //Starting Address of next record
             next_add = strtol(address, &temp, 16);
             fscanf(inter, "%s\t%s\t%s\t%s", address, label, opcode, operand);
-            if(curr_len > 60 || strcmp(opcode, "END") == 0){
+            if(curr_len > 60){
                 //If adding the current instruction -> length > (30 bytes)
                 //Print the old record
                 fprintf(objcode, "T^%06x^%02x^%s\n",text_add, rec_len/2, text_rec);
@@ -114,11 +115,13 @@ int main()
                 //Clear old text record and initialise new one concatenated with current instruction
                 strcpy(text_rec,"");
                 //Length of current instruction => text record length 
-                curr_len = strlen(obj);
+                rec_len = curr_len = strlen(obj);
                 strcat(obj,"^");
                 strcat(text_rec,obj);
             }
         }
+        fprintf(objcode, "T^%06x^%02x^%s\n",text_add, rec_len/2, text_rec);
+        printf("T^%06x^%02x^%s\n\n",text_add, rec_len/2, text_rec);
         fprintf(objcode, "E^%06x^\n", start);
         printf("End record :\n\nE^%06x^\n", start);
     }

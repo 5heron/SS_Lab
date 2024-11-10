@@ -54,7 +54,7 @@ int main(){
                         sprintf(cho,"%02x",operand[i]);     
                         strcat(obj,cho);
                     }
-                    obj[(strlen(operand)-3)*3] = '\0';
+                    obj[((strlen(operand)-3)*2)] = '\0';
                 }
             }
             else if(strcmp(opcode,"WORD") == 0)
@@ -62,23 +62,25 @@ int main(){
             else if(!((strcmp(opcode,"RESW") == 0) || (strcmp(opcode,"RESB") == 0)))
                 printf("Undefined opcode!\n");
             next_add = locctr;
-            rec_len = cur_len;
             cur_len += strlen(obj);
             fscanf(inter,"%x\t%s\t%s%s",&locctr,label,opcode,operand);
-            if(cur_len < 60){
+            if(cur_len <= 60){
                 if(strlen(obj) != 0){
-                    strcat(text,"^");
+                    strcat(obj,"^");
                     strcat(text,obj);
+                    rec_len = cur_len;
                 }
             }
-            if(strcmp(opcode,"END") == 0 || cur_len >= 60){
-                fprintf(out,"T^%04x^%02x%s\n",text_add,rec_len/2,text);
+            if(cur_len > 60){
+                fprintf(out,"T^%04x^%02x^%s\n",text_add,rec_len/2 + (rec_len % 2),text);
                 strcpy(text,"");
                 rec_len = cur_len = strlen(obj);
+                strcat(obj,"^");
                 strcat(text,obj);
                 text_add = next_add;
             }
         }
+        fprintf(out,"T^%04x^%02x^%s\n",text_add,rec_len/2 + (rec_len % 2),text);
         fprintf(out, "E^%06x\n", start);
     }
     fclose(optab);
