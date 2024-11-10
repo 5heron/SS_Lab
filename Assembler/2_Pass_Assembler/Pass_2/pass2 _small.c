@@ -72,7 +72,7 @@ int main(){
                 }
             }
             if(cur_len > 60){
-                fprintf(out,"T^%04x^%02x^%s\n",text_add,rec_len/2 + (rec_len % 2),text);
+                fprintf(out,"T^%06x^%02x^%s\n",text_add,rec_len/2 + (rec_len % 2),text);
                 strcpy(text,"");
                 rec_len = cur_len = strlen(obj);
                 strcat(obj,"^");
@@ -81,7 +81,7 @@ int main(){
             }
         }
         if(strlen(text) != 0)
-            fprintf(out,"T^%04x^%02x^%s\n",text_add,rec_len/2 + (rec_len % 2),text);
+            fprintf(out,"T^%06x^%02x^%s\n",text_add,rec_len/2 + (rec_len % 2),text);
         fprintf(out, "E^%06x\n", start);
     }
     fclose(optab);
