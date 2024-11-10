@@ -18,8 +18,8 @@ int check_symtab_duplicate(FILE *symtab, const char *label)
 
 int main()
 {
-    char label[10], opcode[10], operand[10], symbol[7];
-    char code[10], mnemonic[3], *temp, *add;
+    char label[10], opcode[10], operand[10];
+    char code[10], mnemonic[3], *temp;
     int locctr, start, length, flag;
     FILE *input, *optab, *symtab, *inter, *len;
     input = fopen("input.txt", "r");
