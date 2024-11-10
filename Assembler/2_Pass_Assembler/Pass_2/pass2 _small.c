@@ -80,7 +80,8 @@ int main(){
                 text_add = next_add;
             }
         }
-        fprintf(out,"T^%04x^%02x^%s\n",text_add,rec_len/2 + (rec_len % 2),text);
+        if(strlen(text) != 0)
+            fprintf(out,"T^%04x^%02x^%s\n",text_add,rec_len/2 + (rec_len % 2),text);
         fprintf(out, "E^%06x\n", start);
     }
     fclose(optab);

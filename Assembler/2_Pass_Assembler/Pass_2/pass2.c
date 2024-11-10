@@ -120,8 +120,10 @@ int main()
                 strcat(text_rec,obj);
             }
         }
-        fprintf(objcode, "T^%06x^%02x^%s\n",text_add, rec_len/2, text_rec);
-        printf("T^%06x^%02x^%s\n\n",text_add, rec_len/2, text_rec);
+        if(strlen(text_rec) != 0){
+            fprintf(objcode, "T^%06x^%02x^%s\n",text_add, rec_len/2, text_rec);
+            printf("T^%06x^%02x^%s\n\n",text_add, rec_len/2, text_rec);
+        }
         fprintf(objcode, "E^%06x^\n", start);
         printf("End record :\n\nE^%06x^\n", start);
     }
