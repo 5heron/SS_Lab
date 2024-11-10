@@ -186,7 +186,6 @@ int main()
             else
                 printf("ERROR! : Undefined opcode\n");
             fscanf(input, "%s\t%s\t%s", label, opcode, operand);
-            rec_len = curr_len;
             curr_len += strlen(obj);
             if(curr_len <= 60){
                 //If length less than 60 (30 bytes)
@@ -194,18 +193,21 @@ int main()
                     //Add it text record
                     strcat(obj,"^");
                     strcat(text_rec,obj);
+                    rec_len = curr_len;
                 }
             }
-            if(curr_len > 60 || strcmp(opcode, "END") == 0){
+            if(curr_len > 60 ){
                 if(curr_len != 0)
                     objcode = print_rec(objcode,rec_len,text_add,text_rec);
                 text_add = next_add;
                 strcpy(text_rec,"");
-                curr_len = strlen(obj);
+                rec_len = curr_len = strlen(obj);
                 strcat(obj,"^");
                 strcat(text_rec,obj);
             }
         }
+        if(strlen(text_rec) != 0)
+            print_rec(objcode,rec_len,text_add,text_rec);
         fclose(optab);
         fclose(input);
         length = locctr - start;
