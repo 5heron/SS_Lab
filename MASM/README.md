@@ -3,7 +3,7 @@
 - **MASM**
   - [Sample Programs](Programs)
   - [Programs.pdf](masam_programs.pdf)
-  - [Tools for execution](MASM/For_execution)
+  - [Tools for execution](For_execution)
   
 ## Guide
 
