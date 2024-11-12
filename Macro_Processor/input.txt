@@ -1,10 +1,10 @@
-COPY START 1000
-RDREC MACRO &num1,&num2
--	LDA &num1
+COPY 	START 	1000
+RDREC 	MACRO 	&num1,&num2
+-	LDA 	&num1
 -	LDA	x'&num2'
 -	MEND	-
-wrREC MACRO &num1
--	LDA &num1
+wrREC 	MACRO 	&num1
+-	LDA 	&num1
 -	MEND	-
 -	RDREC	50,20
 -	wrREC	al
